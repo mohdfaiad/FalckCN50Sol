@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FalckCN50Lib.TAdministrador">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAABAAAAAACoAAAAAAAAAAAAAAAAAAAAIgIAEAE=</HashCode>
+      <FileName>TAdministrador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.TRonda">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABACBAAAAAAACAAAAEAAAQAAAAIAAAAAAAAAIIAAA=</HashCode>
+      <FileName>TRonda.cs</FileName>
+      <NewMemberFileName>TVigilante.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.TVigilante">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABACBAAAAAAACAAAAAAAAEAAAAIAAAAAAAAAIIAAA=</HashCode>
+      <FileName>TVigilante.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.CntCN50">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAgBAAABAAAQAAQAAECgBAACAAABgCAAAQBEAAAAA=</HashCode>
+      <FileName>CntCN50.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.TIncidencia">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAAACAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>TIncidencia.cs</FileName>
+      <NewMemberFileName>TGrupo.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.TEdificio">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgSAAABAAAAAAQAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>TEdificio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.TPunto">
+    <Position X="3" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACBEAAAAAACAAQQAABCAAAIAQAAIAAAAAAIACAA=</HashCode>
+      <FileName>TPunto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.TRondaPunto">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABBAACACABAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>TRondaPunto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.Estado">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAEAAAAAAAAAAAAAACAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Estado.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FalckCN50Lib.Lectura">
+    <Position X="6.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAABEAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Lectura.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

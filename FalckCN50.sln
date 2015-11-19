@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FalckCN50", "FalckCN50\FalckCN50.csproj", "{DE3E2619-3665-44E1-972A-7A9871EA53C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FalckCN50Lib", "FalckCN50Lib\FalckCN50Lib.csproj", "{D172ACE4-AC3C-417A-B893-1155B49AC4A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE3E2619-3665-44E1-972A-7A9871EA53C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE3E2619-3665-44E1-972A-7A9871EA53C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE3E2619-3665-44E1-972A-7A9871EA53C2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DE3E2619-3665-44E1-972A-7A9871EA53C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE3E2619-3665-44E1-972A-7A9871EA53C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE3E2619-3665-44E1-972A-7A9871EA53C2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D172ACE4-AC3C-417A-B893-1155B49AC4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D172ACE4-AC3C-417A-B893-1155B49AC4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D172ACE4-AC3C-417A-B893-1155B49AC4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D172ACE4-AC3C-417A-B893-1155B49AC4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
