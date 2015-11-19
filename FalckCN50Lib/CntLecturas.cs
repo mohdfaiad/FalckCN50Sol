@@ -71,12 +71,52 @@ namespace FalckCN50Lib
             // cambiamos en el estado la ronda
             Estado.Ronda = r;
             Estado.RondaPuntoEsperado = r.RondasPuntos[0];
-            Estado.Orden = r.RondasPuntos[0].orden;
+            Estado.Orden = 0;
             return l;
         }
         public static Lectura LeidoPunto(TPunto p)
         {
             Lectura l = new Lectura();
+            // comprobar si hay una ronda activa
+            if (Estado.Ronda == null)
+            {
+                l.InAuto = "INCIDENCIA";
+                l.Leido = p.nombre;
+                l.ObsAuto = "No hay ninguna ronda activa, debería haber ledio la etiqueta de inicio de ronda";
+                return l;
+            }
+            // comprobar si el punto está en secuencia
+            TRondaPunto rp = Estado.RondaPuntoEsperado;
+            if (p.puntoId == rp.Punto.puntoId)
+            {
+                l.InAuto = "CORRECTO";
+                l.Leido = p.nombre;
+                l.ObsAuto = "Punto leido en secuencia correcta";
+                // Verificar si es el último punto de la ronda
+                return UltimoEnRonda(l, p);
+            }
+            // comprobar si pertence a esa ronda
+            bool enRonda = false;
+            for (int i = 0; i < Estado.Ronda.RondasPuntos.Count; i++)
+            {
+                TRondaPunto rp2 = Estado.Ronda.RondasPuntos[i];
+                if (rp.Punto.puntoId == p.puntoId)
+                {
+                    enRonda = true;
+                }
+            }
+            if (!enRonda)
+            {
+                l.InAuto = "INCIDENCIA";
+                l.Leido = p.nombre;
+                l.ObsAuto = "El punto pertenece a la ronda pero no se ha leido en el orden correcto";
+            }
+            else
+            {
+                l.InAuto = "INCIDENCIA";
+                l.Leido = p.nombre;
+                l.ObsAuto = "El punto leido no pertenece a esta ronda";
+            }
             return l;
         }
         public static Lectura TagDesconocido()
@@ -85,6 +125,28 @@ namespace FalckCN50Lib
             l.InAuto = "INCIDENCIA";
             l.Leido = "DESCONOCIDO";
             l.ObsAuto = "Se ha leido una etiqueta que no figura en la base de datos";
+            return l;
+        }
+
+        public static Lectura UltimoEnRonda(Lectura l, TPunto p)
+        {
+            // Cogemos el último punto de verdad
+            int ultindex = Estado.Ronda.RondasPuntos.Count - 1;
+            TRondaPunto urp = Estado.Ronda.RondasPuntos[ultindex];
+            if (urp.Punto.puntoId == p.puntoId)
+            {
+                // es el útimo punto
+                l.ObsAuto = "FINAL DE RONDA. " + l.ObsAuto;
+                Estado.Ronda = null;
+                Estado.RondaPuntoEsperado = null;
+                Estado.Orden = 0;
+            }
+            else
+            {
+                // no es el útimo
+                Estado.Orden = Estado.Orden + 1;
+                Estado.RondaPuntoEsperado = Estado.Ronda.RondasPuntos[Estado.Orden];
+            }
             return l;
         }
     }

@@ -96,8 +96,8 @@ namespace FalckCN50Lib
                                 p.nombre AS pnombre, p.edificioId, p.tag AS ptag, 
                                 e.nombre AS enombre, e.grupoId, g.nombre AS gnombre, p.cota, p.cubiculo
                             FROM rondas AS r 
-                                LEFT OUTER JOIN rondaspuntos AS rp ON rp.rondaId = rp.rondaId 
-                                LEFT OUTER JOIN puntos AS p ON p.puntoId = rp.puntoId 
+                                LEFT OUTER JOIN rondaspuntos AS rp ON rp.rondaId = r.rondaId 
+                                LEFT OUTER JOIN puntos AS p ON p.puntoId = rp.puntoId
                                 LEFT OUTER JOIN edificios AS e ON e.edificioId = p.edificioId 
                                 LEFT OUTER JOIN grupos AS g ON g.grupoId = e.grupoId
                             WHERE r.tag = '{0}' ORDER BY rp.orden";
