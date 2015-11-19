@@ -101,6 +101,7 @@
             this.txtObsAuto.Name = "txtObsAuto";
             this.txtObsAuto.Size = new System.Drawing.Size(227, 63);
             this.txtObsAuto.TabIndex = 15;
+            this.txtObsAuto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtObsAuto_KeyDown);
             // 
             // cmbIncidencias
             // 

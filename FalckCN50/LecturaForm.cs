@@ -28,15 +28,18 @@ namespace FalckCN50
             if (l.InAuto == "CORRECTO")
             {
                 lblInAuto.BackColor = System.Drawing.Color.Green;
+                this.BackColor = System.Drawing.Color.LightGreen;
             }
             else
             {
                 lblInAuto.BackColor = System.Drawing.Color.Red;
+                this.BackColor = System.Drawing.Color.LightSalmon;
             }
             lblInAuto.Text = l.InAuto;
             txtObsAuto.Text = l.ObsAuto;
             lblLeido.Text = l.Leido;
             CargarIncidencias();
+            txtObsAuto.Focus();
         }
 
         private void mnuAceptar_Click(object sender, EventArgs e)
@@ -65,6 +68,14 @@ namespace FalckCN50
         private void cmbIncidencias_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtObsAuto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == System.Windows.Forms.Keys.Enter))
+            {
+                mnuAceptar_Click(null, null);
+            }
         }
 
     }

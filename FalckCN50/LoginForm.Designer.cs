@@ -51,6 +51,7 @@
             // mnuSalir
             // 
             this.mnuSalir.Text = "SALIR";
+            this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
             // 
             // mnuAceptar
             // 

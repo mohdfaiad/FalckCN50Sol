@@ -59,7 +59,13 @@ namespace FalckCN50
         {
             if ((e.KeyCode == System.Windows.Forms.Keys.Enter))
             {
+                System.Windows.Forms.Keys.
                 btnAceptar_Click(null, null);
+            }
+            if ((e.KeyCode == System.Windows.Forms.Keys.Escape))
+            {
+                System.Windows.Forms.Keys.
+                mnuSalir_Click(null, null);
             }
         }
 

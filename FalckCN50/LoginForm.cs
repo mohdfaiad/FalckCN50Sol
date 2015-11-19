@@ -51,5 +51,10 @@ namespace FalckCN50
             return true;
         }
 
+        private void mnuSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
