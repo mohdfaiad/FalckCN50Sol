@@ -53,5 +53,27 @@ namespace FalckCN50Lib
             }
             return i;
         }
+
+        public static IList<TIncidencia> GetIncidencias(SqlCeConnection conn)
+        {
+            IList<TIncidencia> li = new List<TIncidencia>();
+
+            using (SqlCeCommand cmd = conn.CreateCommand())
+            {
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = String.Format("SELECT * FROM incidencias");
+                using (SqlCeDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        li.Add(GetIncidenciaFromDr(dr));
+
+                    }
+                    if (!dr.IsClosed)
+                        dr.Close();
+                }
+            }
+            return li;
+        }
     }
 }

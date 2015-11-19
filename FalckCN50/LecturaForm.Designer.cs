@@ -35,10 +35,10 @@
             this.lblInAuto = new System.Windows.Forms.Label();
             this.lblLeido = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.lblObsMan = new System.Windows.Forms.Label();
             this.txtObsMan = new System.Windows.Forms.TextBox();
             this.txtObsAuto = new System.Windows.Forms.TextBox();
+            this.cmbIncidencias = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -79,13 +79,6 @@
             this.label1.Size = new System.Drawing.Size(230, 18);
             this.label1.Text = "Incidencia manual:";
             // 
-            // cmbTipo
-            // 
-            this.cmbTipo.Location = new System.Drawing.Point(7, 142);
-            this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(228, 22);
-            this.cmbTipo.TabIndex = 6;
-            // 
             // lblObsMan
             // 
             this.lblObsMan.Location = new System.Drawing.Point(7, 167);
@@ -109,16 +102,24 @@
             this.txtObsAuto.Size = new System.Drawing.Size(227, 63);
             this.txtObsAuto.TabIndex = 15;
             // 
+            // cmbIncidencias
+            // 
+            this.cmbIncidencias.Location = new System.Drawing.Point(7, 143);
+            this.cmbIncidencias.Name = "cmbIncidencias";
+            this.cmbIncidencias.Size = new System.Drawing.Size(227, 22);
+            this.cmbIncidencias.TabIndex = 20;
+            this.cmbIncidencias.SelectedIndexChanged += new System.EventHandler(this.cmbIncidencias_SelectedIndexChanged);
+            // 
             // LecturaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
+            this.Controls.Add(this.cmbIncidencias);
             this.Controls.Add(this.txtObsAuto);
             this.Controls.Add(this.txtObsMan);
             this.Controls.Add(this.lblObsMan);
-            this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblLeido);
             this.Controls.Add(this.lblInAuto);
@@ -136,9 +137,9 @@
         private System.Windows.Forms.Label lblLeido;
         private System.Windows.Forms.MenuItem mnuAceptar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.Label lblObsMan;
         private System.Windows.Forms.TextBox txtObsMan;
         private System.Windows.Forms.TextBox txtObsAuto;
+        private System.Windows.Forms.ComboBox cmbIncidencias;
     }
 }

@@ -6,7 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlServerCe;
 using FalckCN50Lib;
+
 
 namespace FalckCN50
 {
@@ -34,6 +36,7 @@ namespace FalckCN50
             lblInAuto.Text = l.InAuto;
             txtObsAuto.Text = l.ObsAuto;
             lblLeido.Text = l.Leido;
+            CargarIncidencias();
         }
 
         private void mnuAceptar_Click(object sender, EventArgs e)
@@ -41,6 +44,27 @@ namespace FalckCN50
             LeerCodigo lc = new LeerCodigo();
             lc.Show();
             this.Close();
+        }
+
+        private void CargarIncidencias()
+        {
+            cmbIncidencias.Items.Clear();
+            cmbIncidencias.DisplayMember = "nombre";
+            cmbIncidencias.ValueMember = "incidenciaId";
+            // cargamos el desplegable.
+            SqlCeConnection conn = CntCN50.TSqlConnection();
+            CntCN50.TOpen(conn);
+            foreach (TIncidencia inci in CntCN50.GetIncidencias(conn))
+            {
+                cmbIncidencias.Items.Add(inci);
+            }
+            CntCN50.TClose(conn);
+            
+        }
+
+        private void cmbIncidencias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

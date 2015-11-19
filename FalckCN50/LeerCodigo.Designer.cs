@@ -62,11 +62,11 @@
             this.panel1.Controls.Add(this.lblCodBarras);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(217, 125);
+            this.panel1.Size = new System.Drawing.Size(217, 110);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(39, 74);
+            this.btnAceptar.Location = new System.Drawing.Point(37, 63);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(134, 36);
             this.btnAceptar.TabIndex = 2;
@@ -97,7 +97,7 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.lblVigilante);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(4, 133);
+            this.panel2.Location = new System.Drawing.Point(4, 119);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(216, 234);
             // 
