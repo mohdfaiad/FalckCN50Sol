@@ -48,11 +48,12 @@
             // 
             // mnuCancelar
             // 
-            this.mnuCancelar.Text = "CANCELAR";
+            this.mnuCancelar.Text = "VOLVER";
+            this.mnuCancelar.Click += new System.EventHandler(this.mnuCancelar_Click);
             // 
             // mnuAceptar
             // 
-            this.mnuAceptar.Text = "ACEPTAR";
+            this.mnuAceptar.Text = "CONTINUAR";
             this.mnuAceptar.Click += new System.EventHandler(this.mnuAceptar_Click);
             // 
             // lblInAuto
@@ -99,6 +100,7 @@
             this.txtObsAuto.Location = new System.Drawing.Point(7, 55);
             this.txtObsAuto.Multiline = true;
             this.txtObsAuto.Name = "txtObsAuto";
+            this.txtObsAuto.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtObsAuto.Size = new System.Drawing.Size(227, 63);
             this.txtObsAuto.TabIndex = 15;
             this.txtObsAuto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtObsAuto_KeyDown);

@@ -13,7 +13,7 @@ namespace FalckCN50
         [MTAThread]
         static void Main()
         {
-            Application.Run(new LoginForm());
+            Application.Run(new EntradaVigilante());
         }
     }
 }

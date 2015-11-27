@@ -14,6 +14,7 @@ namespace FalckCN50
 {
     public partial class LecturaForm : Form
     {
+        private Lectura lec = null;
         public LecturaForm(Lectura l)
         {
             InitializeComponent();
@@ -23,6 +24,12 @@ namespace FalckCN50
                 LeerCodigo leerCodigo = new LeerCodigo();
                 leerCodigo.Show();
                 this.Close();
+            }
+            this.lec = l;
+            //
+            if (l.Status == 0)
+            {
+                mnuCancelar.Enabled = false;
             }
             //
             if (l.InAuto == "CORRECTO")
@@ -44,6 +51,32 @@ namespace FalckCN50
 
         private void mnuAceptar_Click(object sender, EventArgs e)
         {
+            // salvamos la descarga y el status
+            TDescargaLinea dl = this.lec.DescargaLinea;
+            int status = this.lec.Status;
+            // grabamos incidencias y observaciones
+            if (cmbIncidencias.SelectedItem != null)
+                dl.incidenciaId = ((TIncidencia)cmbIncidencias.SelectedItem).incidenciaId;
+            dl.observaciones = txtObsMan.Text;
+            // siempre se graba si le dan continuar
+            SqlCeConnection conn = CntCN50.TSqlConnection();
+            CntCN50.TOpen(conn);
+            CntCN50.SetDescargaLinea(dl, conn);
+            CntCN50.TClose(conn);
+            // control de status
+            if (status == 1)
+            {
+                // quiere que el siguiente punto se corresponda con el siguiente al realmente leido
+                for (int i = 0; i < Estado.Ronda.RondasPuntos.Count; i++)
+                {
+                    TRondaPunto rp = Estado.Ronda.RondasPuntos[i];
+                    if (dl.tipo == "PUNTO" && dl.tipoId == rp.Punto.puntoId)
+                    {
+                        Estado.Orden = i;
+                        Estado.RondaPuntoEsperado = Estado.Ronda.RondasPuntos[Estado.Orden];
+                    }
+                }
+            }
             LeerCodigo lc = new LeerCodigo();
             lc.Show();
             this.Close();
@@ -76,6 +109,11 @@ namespace FalckCN50
             {
                 mnuAceptar_Click(null, null);
             }
+        }
+
+        private void mnuCancelar_Click(object sender, EventArgs e)
+        {
+            
         }
 
     }

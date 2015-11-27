@@ -42,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblVigilante = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblSP0 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,12 +58,13 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel1.Controls.Add(this.btnAceptar);
             this.panel1.Controls.Add(this.txtCodigo);
             this.panel1.Controls.Add(this.lblCodBarras);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(217, 110);
+            this.panel1.Size = new System.Drawing.Size(234, 110);
             // 
             // btnAceptar
             // 
@@ -87,25 +89,28 @@
             this.lblCodBarras.Location = new System.Drawing.Point(10, 13);
             this.lblCodBarras.Name = "lblCodBarras";
             this.lblCodBarras.Size = new System.Drawing.Size(198, 20);
-            this.lblCodBarras.Text = "Introduzca o lea código:";
+            this.lblCodBarras.Text = "INTRODUZCA O LEA CÓDIGO";
+            this.lblCodBarras.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // panel2
             // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.lblSP0);
             this.panel2.Controls.Add(this.lblSP);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.lblRonda);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.lblVigilante);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(4, 119);
+            this.panel2.Location = new System.Drawing.Point(3, 119);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(216, 234);
+            this.panel2.Size = new System.Drawing.Size(234, 136);
             // 
             // lblSP
             // 
-            this.lblSP.Location = new System.Drawing.Point(7, 127);
+            this.lblSP.Location = new System.Drawing.Point(7, 154);
             this.lblSP.Name = "lblSP";
-            this.lblSP.Size = new System.Drawing.Size(205, 107);
+            this.lblSP.Size = new System.Drawing.Size(205, 80);
             // 
             // label6
             // 
@@ -143,6 +148,13 @@
             this.label1.Size = new System.Drawing.Size(206, 17);
             this.label1.Text = "VIGILANTE:";
             // 
+            // lblSP0
+            // 
+            this.lblSP0.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblSP0.Location = new System.Drawing.Point(8, 133);
+            this.lblSP0.Name = "lblSP0";
+            this.lblSP0.Size = new System.Drawing.Size(204, 21);
+            // 
             // LeerCodigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -175,5 +187,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblRonda;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSP0;
     }
 }

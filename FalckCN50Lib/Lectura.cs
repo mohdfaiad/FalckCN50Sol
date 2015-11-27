@@ -11,5 +11,8 @@ namespace FalckCN50Lib
         public string ObsAuto;
         public TIncidencia Incidencia;
         public string ObsMan;
+        public int Status;
+        public TDescargaLinea DescargaLinea;
+
     }
 }

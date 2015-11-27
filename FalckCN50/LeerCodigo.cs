@@ -27,16 +27,19 @@ namespace FalckCN50
             if (Estado.RondaPuntoEsperado != null)
             {
                 TRondaPunto rp = Estado.RondaPuntoEsperado;
-                string mens = "{1} [Edificio:{0}] [Cota: {2}] [Cubiculo: {3}]";
-                mens = String.Format(mens, rp.Punto.Edificio.nombre, rp.Punto.nombre, rp.Punto.cota, rp.Punto.cubiculo);
+                lblSP0.Text = rp.Punto.nombre;
+                string mens = "[Grupo: {1}] [Edificio:{0}] [Cota: {2}] [Cubiculo: {3}]";
+                mens = String.Format(mens, rp.Punto.Edificio.nombre, rp.Punto.Edificio.Grupo.nombre, rp.Punto.cota, rp.Punto.cubiculo);
                 lblSP.Text = mens;
             }
         }
 
         private void mnuSalir_Click(object sender, EventArgs e)
         {
-            LoginForm frmLogin = new LoginForm();
-            frmLogin.Show();
+            EntradaVigilante entradaVigilante = new EntradaVigilante();
+            // borramos primero el vigilante por que se ha salido
+            Estado.Vigilante = null;
+            entradaVigilante.Show();
             this.Close();
         }
 
@@ -59,12 +62,10 @@ namespace FalckCN50
         {
             if ((e.KeyCode == System.Windows.Forms.Keys.Enter))
             {
-                System.Windows.Forms.Keys.
                 btnAceptar_Click(null, null);
             }
             if ((e.KeyCode == System.Windows.Forms.Keys.Escape))
             {
-                System.Windows.Forms.Keys.
                 mnuSalir_Click(null, null);
             }
         }

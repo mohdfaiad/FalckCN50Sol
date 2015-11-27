@@ -17,42 +17,71 @@ namespace FalckCN50Lib
             if (v != null)
             {
                 CntCN50.TClose(conn);
-                return LeidoVigilante(v);
+                return LeidoVigilante(v, tag);
             }
             // comprobamos si es una ronda
             TRonda r = CntCN50.GetRondaFromTag(tag, conn);
             if (r != null)
             {
                 CntCN50.TClose(conn);
-                return LeidaRonda(r);
+                return LeidaRonda(r, tag);
             }
             // comprobamos si es punto
             TPunto p = CntCN50.GetPuntoFromTag(tag, conn);
             if (p != null)
             {
                 CntCN50.TClose(conn);
-                return LeidoPunto(p);
+                return LeidoPunto(p, tag);
             }
             // desconocido
             CntCN50.TClose(conn);
-            return TagDesconocido();
+            return TagDesconocido(tag);
         }
-        public static Lectura LeidoVigilante(TVigilante v)
+        public static Lectura LeidoVigilante(TVigilante v, string tag)
         {
+
             // este es fácil, simplemente cambiamos el estado y ponemos al vigilante
             Estado.Vigilante = v;
             Lectura l = new Lectura();
             l.InAuto = "CORRECTO";
             l.Leido = v.nombre;
             l.ObsAuto = "A partir de este momento las lecturas se asignarán a este vigilante";
+            // no hay dudas y podemos montar la descarga a grabar;
+            //--- Montar descarga asociada
+            SqlCeConnection conn = CntCN50.TSqlConnection();
+            CntCN50.TOpen(conn); 
+            l.DescargaLinea = new TDescargaLinea();
+            l.DescargaLinea.descargaLineaId = CntCN50.GetSiguienteDescargaLineaId(conn);
+            l.DescargaLinea.tag = tag;
+            l.DescargaLinea.tipo = "VIGILANTE";
+            l.DescargaLinea.tipoId = v.vigilanteId;
+            l.DescargaLinea.nombre = v.nombre;
+            l.DescargaLinea.fechaHora = DateTime.Now;
+            l.DescargaLinea.observaciones = "";
+            //---------
+            // Este hay que grabarlo porque ahora si no no lo haría nadie
+            CntCN50.SetDescargaLinea(l.DescargaLinea, conn);
+            CntCN50.TClose(conn);
             return l;
         }
-        public static Lectura LeidaRonda(TRonda r)
+        public static Lectura LeidaRonda(TRonda r, string tag)
         {
 
             Lectura l = new Lectura();
+            l.Status = 0; // por defecto no hay tratamiento especial
             // Debería haberse leido previamente un vigilante 
             l.Leido = r.nombre;
+            //--- Montar descarga asociada
+            SqlCeConnection conn = CntCN50.TSqlConnection();
+            CntCN50.TOpen(conn);
+            l.DescargaLinea = new TDescargaLinea();
+            l.DescargaLinea.descargaLineaId = CntCN50.GetSiguienteDescargaLineaId(conn);
+            l.DescargaLinea.tag = tag;
+            l.DescargaLinea.tipo = "RONDA";
+            l.DescargaLinea.tipoId = r.rondaId;
+            l.DescargaLinea.nombre = r.nombre;
+            l.DescargaLinea.fechaHora = DateTime.Now;
+            //---------
             if (Estado.Vigilante == null)
             {
                 l.InAuto = "INCIDENCIA";
@@ -66,7 +95,8 @@ namespace FalckCN50Lib
             if (Estado.Ronda != null)
             {
                 l.InAuto = "INCIDENCIA";
-                l.ObsAuto = "No se había cerrado la ronda anterior, quedarán puntos sin controlar. " + l.ObsAuto;
+                l.ObsAuto = "No se había cerrado la ronda anterior. Si pulsa 'Volver' no se tendrá en cuenta esta lectura y podrá seguir con la ronda anterior. Si pulsa 'Continuar' se cerrará la ronda quedando puntos sin controlar. " + l.ObsAuto;
+                l.Status = 2; // ronda no cerrada
             }
             // cambiamos en el estado la ronda
             Estado.Ronda = r;
@@ -74,15 +104,27 @@ namespace FalckCN50Lib
             Estado.Orden = 0;
             return l;
         }
-        public static Lectura LeidoPunto(TPunto p)
+        public static Lectura LeidoPunto(TPunto p, string tag)
         {
             Lectura l = new Lectura();
+            l.Status = 0;
+            //--- Montar descarga asociada
+            SqlCeConnection conn = CntCN50.TSqlConnection();
+            CntCN50.TOpen(conn);
+            l.DescargaLinea = new TDescargaLinea();
+            l.DescargaLinea.descargaLineaId = CntCN50.GetSiguienteDescargaLineaId(conn);
+            l.DescargaLinea.tag = tag;
+            l.DescargaLinea.tipo = "PUNTO";
+            l.DescargaLinea.tipoId = p.puntoId;
+            l.DescargaLinea.nombre = p.nombre;
+            l.DescargaLinea.fechaHora = DateTime.Now;
+            //---------
             // comprobar si hay una ronda activa
             if (Estado.Ronda == null)
             {
                 l.InAuto = "INCIDENCIA";
                 l.Leido = p.nombre;
-                l.ObsAuto = "No hay ninguna ronda activa, debería haber ledio la etiqueta de inicio de ronda";
+                l.ObsAuto = "No hay ninguna ronda activa, debería haber leido la etiqueta de inicio de ronda";
                 return l;
             }
             // comprobar si el punto está en secuencia
@@ -109,7 +151,8 @@ namespace FalckCN50Lib
             {
                 l.InAuto = "INCIDENCIA";
                 l.Leido = p.nombre;
-                l.ObsAuto = "El punto pertenece a la ronda pero no se ha leido en el orden correcto";
+                l.ObsAuto = "El punto pertenece a la ronda pero no se ha leido en el orden correcto. Si pulsa 'Volver' el punto siguiente continuará siendo " + Estado.RondaPuntoEsperado.Punto.nombre + ". Si pulsa 'Continuar' el punto esperado será el siguiente del leido.";
+                l.Status = 1; // punto no en orden.
             }
             else
             {
@@ -119,9 +162,21 @@ namespace FalckCN50Lib
             }
             return l;
         }
-        public static Lectura TagDesconocido()
+        public static Lectura TagDesconocido(string tag)
         {
             Lectura l = new Lectura();
+            l.Status = 0;
+            //--- Montar descarga asociada
+            SqlCeConnection conn = CntCN50.TSqlConnection();
+            CntCN50.TOpen(conn);
+            l.DescargaLinea = new TDescargaLinea();
+            l.DescargaLinea.descargaLineaId = CntCN50.GetSiguienteDescargaLineaId(conn);
+            l.DescargaLinea.tag = tag;
+            l.DescargaLinea.tipo = null;
+            l.DescargaLinea.tipoId = 0;
+            l.DescargaLinea.nombre = null;
+            l.DescargaLinea.fechaHora = DateTime.Now;
+            //---------
             l.InAuto = "INCIDENCIA";
             l.Leido = "DESCONOCIDO";
             l.ObsAuto = "Se ha leido una etiqueta que no figura en la base de datos";
@@ -136,7 +191,7 @@ namespace FalckCN50Lib
             if (urp.Punto.puntoId == p.puntoId)
             {
                 // es el útimo punto
-                l.ObsAuto = "FINAL DE RONDA. " + l.ObsAuto;
+                l.ObsAuto = "FINAL DE RONDA." + l.ObsAuto;
                 Estado.Ronda = null;
                 Estado.RondaPuntoEsperado = null;
                 Estado.Orden = 0;

@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="CntCN50.cs" />
     <Compile Include="CntLecturas.cs" />
+    <Compile Include="TDescarga.cs" />
+    <Compile Include="TDescargaLinea.cs" />
     <Compile Include="TIncidencia.cs" />
     <Compile Include="Estado.cs" />
     <Compile Include="Lectura.cs" />
