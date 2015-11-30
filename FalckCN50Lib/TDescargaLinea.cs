@@ -80,7 +80,7 @@ namespace FalckCN50Lib
             {
                 string mFecha = String.Format("CONVERT(DATETIME,'{0:yyyy-MM-dd HH:mm:ss}',102)", dl.fechaHora);
                 string sql = @"INSERT INTO descargas_lineas (descargaId, tag, fechaHora, tipo, tipoId, nombre, incidenciaId, observaciones)
-                                VALUES ({0},{1},'{2}',{3},'{4}',{5},'{6}',{7}, '{8}');";
+                                VALUES ({0},'{1}',{2},'{3}',{4},'{5}',{6}, '{7}');";
                 sql = String.Format(sql, dl.descargaId, dl.tag, mFecha, dl.tipo, dl.tipoId, dl.nombre, dl.incidenciaId, dl.observaciones);
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;

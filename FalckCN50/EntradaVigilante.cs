@@ -58,6 +58,14 @@ namespace FalckCN50
             this.Close();
         }
 
+        private void txtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == System.Windows.Forms.Keys.Enter))
+            {
+                mnuAceptar_Click(null, null);
+            }
+        }
+
 
 
     }

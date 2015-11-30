@@ -72,7 +72,7 @@ namespace FalckCN50
                     TRondaPunto rp = Estado.Ronda.RondasPuntos[i];
                     if (dl.tipo == "PUNTO" && dl.tipoId == rp.Punto.puntoId)
                     {
-                        Estado.Orden = i;
+                        Estado.Orden = i + 1;
                         Estado.RondaPuntoEsperado = Estado.Ronda.RondasPuntos[Estado.Orden];
                     }
                 }
@@ -105,15 +105,40 @@ namespace FalckCN50
 
         private void txtObsAuto_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == System.Windows.Forms.Keys.Enter))
-            {
-                mnuAceptar_Click(null, null);
-            }
+            //if ((e.KeyCode == System.Windows.Forms.Keys.Enter))
+            //{
+            //    mnuAceptar_Click(null, null);
+            //}
         }
 
         private void mnuCancelar_Click(object sender, EventArgs e)
         {
-            
+            // salvamos la descarga y el status
+            TDescargaLinea dl = this.lec.DescargaLinea;
+            int status = this.lec.Status;
+            // grabamos incidencias y observaciones
+            if (cmbIncidencias.SelectedItem != null)
+                dl.incidenciaId = ((TIncidencia)cmbIncidencias.SelectedItem).incidenciaId;
+            dl.observaciones = txtObsMan.Text;
+            if (status != 2)
+            {
+                // siempre se graba si le dan continuar 
+                // excepto en ronda mal leida (status 2)
+                SqlCeConnection conn = CntCN50.TSqlConnection();
+                CntCN50.TOpen(conn);
+                CntCN50.SetDescargaLinea(dl, conn);
+                CntCN50.TClose(conn);
+            }
+            else
+            {
+                // el status es 2 y hay que recuperar los datos de la ronda anterior.
+                Estado.Ronda = Estado.Ronda2;
+                Estado.RondaPuntoEsperado = Estado.RondaPuntoEsperado2;
+                Estado.Orden = Estado.Orden2;
+            }
+            LeerCodigo lc = new LeerCodigo();
+            lc.Show();
+            this.Close();
         }
 
     }

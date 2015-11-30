@@ -11,5 +11,9 @@ namespace FalckCN50Lib
         public static TRonda Ronda;
         public  static TRondaPunto RondaPuntoEsperado;
         public static int Orden;
+        public static TRonda Ronda2;
+        public static TRondaPunto RondaPuntoEsperado2;
+        public static int Orden2;
+
     }
 }

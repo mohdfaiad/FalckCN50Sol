@@ -95,9 +95,13 @@ namespace FalckCN50Lib
             if (Estado.Ronda != null)
             {
                 l.InAuto = "INCIDENCIA";
-                l.ObsAuto = "No se había cerrado la ronda anterior. Si pulsa 'Volver' no se tendrá en cuenta esta lectura y podrá seguir con la ronda anterior. Si pulsa 'Continuar' se cerrará la ronda quedando puntos sin controlar. " + l.ObsAuto;
+                l.ObsAuto = "No se había cerrado la ronda anterior. Si pulsa 'Volver' no se tendrá en cuenta esta lectura y podrá seguir con la ronda anterior. Si pulsa 'Continuar' se cerrará la ronda quedando puntos sin controlar. ";
                 l.Status = 2; // ronda no cerrada
             }
+            // salvamos datos de ronda anterior en previsión de cancelar
+            Estado.Ronda2 = Estado.Ronda;
+            Estado.RondaPuntoEsperado2 = Estado.RondaPuntoEsperado;
+            Estado.Orden2 = Estado.Orden;
             // cambiamos en el estado la ronda
             Estado.Ronda = r;
             Estado.RondaPuntoEsperado = r.RondasPuntos[0];
