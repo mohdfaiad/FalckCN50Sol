@@ -75,5 +75,10 @@ namespace FalckCN50
 
         }
 
+        private void panel2_GotFocus(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

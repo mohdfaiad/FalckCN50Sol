@@ -36,13 +36,13 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.lblCodBarras = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblSP0 = new System.Windows.Forms.Label();
             this.lblSP = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblRonda = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblVigilante = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblSP0 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -105,55 +105,56 @@
             this.panel2.Location = new System.Drawing.Point(3, 119);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(234, 136);
+            this.panel2.GotFocus += new System.EventHandler(this.panel2_GotFocus);
+            // 
+            // lblSP0
+            // 
+            this.lblSP0.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblSP0.Location = new System.Drawing.Point(4, 91);
+            this.lblSP0.Name = "lblSP0";
+            this.lblSP0.Size = new System.Drawing.Size(214, 21);
             // 
             // lblSP
             // 
-            this.lblSP.Location = new System.Drawing.Point(7, 154);
+            this.lblSP.Location = new System.Drawing.Point(7, 112);
             this.lblSP.Name = "lblSP";
             this.lblSP.Size = new System.Drawing.Size(205, 80);
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(7, 110);
+            this.label6.Location = new System.Drawing.Point(6, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(206, 17);
             this.label6.Text = "SIGUIENTE PUNTO:";
             // 
             // lblRonda
             // 
-            this.lblRonda.Location = new System.Drawing.Point(9, 79);
+            this.lblRonda.Location = new System.Drawing.Point(6, 55);
             this.lblRonda.Name = "lblRonda";
-            this.lblRonda.Size = new System.Drawing.Size(203, 31);
+            this.lblRonda.Size = new System.Drawing.Size(212, 19);
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(6, 62);
+            this.label4.Location = new System.Drawing.Point(6, 38);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(206, 17);
+            this.label4.Size = new System.Drawing.Size(76, 17);
             this.label4.Text = "RONDA:";
             // 
             // lblVigilante
             // 
-            this.lblVigilante.Location = new System.Drawing.Point(9, 31);
+            this.lblVigilante.Location = new System.Drawing.Point(10, 17);
             this.lblVigilante.Name = "lblVigilante";
-            this.lblVigilante.Size = new System.Drawing.Size(203, 31);
+            this.lblVigilante.Size = new System.Drawing.Size(208, 21);
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(9, 14);
+            this.label1.Location = new System.Drawing.Point(6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 17);
             this.label1.Text = "VIGILANTE:";
-            // 
-            // lblSP0
-            // 
-            this.lblSP0.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.lblSP0.Location = new System.Drawing.Point(8, 133);
-            this.lblSP0.Name = "lblSP0";
-            this.lblSP0.Size = new System.Drawing.Size(204, 21);
             // 
             // LeerCodigo
             // 
