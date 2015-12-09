@@ -23,7 +23,7 @@ namespace FalckCN50
             Cursor.Current = Cursors.Default;
             // mostrar la fecha y hora en los sitios indicados
             lblFecha.Text = String.Format("{0:dd/MM/yyyy}", DateTime.Now);
-            lblHora.Text = String.Format("{0:hh:mm:ss}", DateTime.Now);
+            lblHora.Text = String.Format("{0:HH:mm:ss}", DateTime.Now);
         }
 
         private void mnuAceptar_Click(object sender, EventArgs e)
@@ -67,6 +67,13 @@ namespace FalckCN50
             {
                 mnuAceptar_Click(null, null);
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // mostrar la fecha y hora en los sitios indicados
+            lblFecha.Text = String.Format("{0:dd/MM/yyyy}", DateTime.Now);
+            lblHora.Text = String.Format("{0:HH:mm:ss}", DateTime.Now);
         }
 
 

@@ -35,11 +35,12 @@
             this.mnuAceptar = new System.Windows.Forms.MenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblHora = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
             this.lblLogin = new System.Windows.Forms.Label();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.lblAppName = new System.Windows.Forms.Label();
-            this.lblFecha = new System.Windows.Forms.Label();
-            this.lblHora = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +78,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(234, 157);
             // 
+            // lblHora
+            // 
+            this.lblHora.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblHora.Location = new System.Drawing.Point(18, 110);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(195, 20);
+            this.lblHora.Text = "00:00:00";
+            this.lblHora.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblFecha.Location = new System.Drawing.Point(18, 81);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(195, 20);
+            this.lblFecha.Text = "00/00/0000";
+            this.lblFecha.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // lblLogin
             // 
             this.lblLogin.Location = new System.Drawing.Point(3, 26);
@@ -102,23 +121,10 @@
             this.lblAppName.Text = "Falck Guard System";
             this.lblAppName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblFecha
+            // timer1
             // 
-            this.lblFecha.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblFecha.Location = new System.Drawing.Point(18, 81);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(195, 20);
-            this.lblFecha.Text = "00/00/0000";
-            this.lblFecha.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblHora
-            // 
-            this.lblHora.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblHora.Location = new System.Drawing.Point(18, 110);
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(195, 20);
-            this.lblHora.Text = "00:00:00";
-            this.lblHora.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // EntradaVigilante
             // 
@@ -148,5 +154,6 @@
         private System.Windows.Forms.MenuItem mnuAceptar;
         private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Timer timer1;
     }
 }
