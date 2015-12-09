@@ -129,6 +129,7 @@
             this.Menu = this.mainMenu1;
             this.Name = "LecturaForm";
             this.Text = "Falck Guard System";
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.LecturaForm_Closing);
             this.ResumeLayout(false);
 
         }

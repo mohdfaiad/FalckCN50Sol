@@ -34,5 +34,12 @@ namespace FalckCN50Lib
             get { return punto; }
             set { punto = value; }
         }
+
+        private bool controlado;
+        public bool Controlado
+        {
+            get { return controlado; }
+            set { controlado = value; }
+        }
     }
 }

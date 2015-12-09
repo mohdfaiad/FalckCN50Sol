@@ -12,7 +12,8 @@ namespace FalckCN50Lib
         public static SqlCeConnection TSqlConnection()
         {
             SqlCeConnection conn = null;
-            string connectionString = String.Format(@"Data Source = {0};Password =;Persist Security Info=True", "\\My Documents\\terminal.sdf");
+            //string connectionString = String.Format(@"Data Source = {0};Password =;Persist Security Info=True", "\\My Documents\\terminal.sdf");
+            string connectionString = String.Format(@"Data Source = {0};Password =;Persist Security Info=True", "\\Storage card\\terminal.sdf");
             conn = new SqlCeConnection(connectionString);
             return conn;
         }

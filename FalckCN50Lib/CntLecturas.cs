@@ -90,12 +90,12 @@ namespace FalckCN50Lib
             else
             {
                 l.InAuto = "CORRECTO";
-                l.ObsAuto = "Comienza esta ronda, en la pantalla de códigos puede consulat el punto siguiente a controlar.";
+                l.ObsAuto = "Comienza esta ronda, en la pantalla de códigos puede consultar el punto siguiente a controlar.";
             }
             if (Estado.Ronda != null)
             {
                 l.InAuto = "INCIDENCIA";
-                l.ObsAuto = "No se había cerrado la ronda anterior. Si pulsa 'Volver' no se tendrá en cuenta esta lectura y podrá seguir con la ronda anterior. Si pulsa 'Continuar' se cerrará la ronda quedando puntos sin controlar. ";
+                l.ObsAuto = "No se había cerrado la ronda anterior. Si pulsa <Volver> no se tendrá en cuenta esta lectura y podrá seguir con la ronda anterior. Si pulsa <Continuar> se cerrará la ronda quedando puntos sin controlar. ";
                 l.Status = 2; // ronda no cerrada
             }
             // salvamos datos de ronda anterior en previsión de cancelar
@@ -122,6 +122,8 @@ namespace FalckCN50Lib
             l.DescargaLinea.tipoId = p.puntoId;
             l.DescargaLinea.nombre = p.nombre;
             l.DescargaLinea.fechaHora = DateTime.Now;
+            // marcar el punto como controlado en la ronda activa
+            MarcarControlado(Estado.Ronda, p);
             //---------
             // comprobar si hay una ronda activa
             if (Estado.Ronda == null)
@@ -145,18 +147,20 @@ namespace FalckCN50Lib
             bool enRonda = false;
             for (int i = 0; i < Estado.Ronda.RondasPuntos.Count; i++)
             {
-                TRondaPunto rp2 = Estado.Ronda.RondasPuntos[i];
+                rp = Estado.Ronda.RondasPuntos[i];
                 if (rp.Punto.puntoId == p.puntoId)
                 {
                     enRonda = true;
                 }
             }
-            if (!enRonda)
+            if (enRonda)
             {
                 l.InAuto = "INCIDENCIA";
                 l.Leido = p.nombre;
-                l.ObsAuto = "El punto pertenece a la ronda pero no se ha leido en el orden correcto. Si pulsa 'Volver' el punto siguiente continuará siendo " + Estado.RondaPuntoEsperado.Punto.nombre + ". Si pulsa 'Continuar' el punto esperado será el siguiente del leido.";
+                l.ObsAuto = "El punto pertenece a la ronda pero no se ha leido en el orden correcto. Si pulsa <Volver> el punto siguiente continuará siendo " + Estado.RondaPuntoEsperado.Punto.nombre + ". Si pulsa <Continuar> el punto esperado será el siguiente del leido.";
                 l.Status = 1; // punto no en orden.
+                // puede que sea el último
+                l = UltimoEnRonda(l, p);
             }
             else
             {
@@ -189,6 +193,8 @@ namespace FalckCN50Lib
 
         public static Lectura UltimoEnRonda(Lectura l, TPunto p)
         {
+            // comprobamos si la ronda esta completa
+            int pos = PuntosNoControlados(Estado.Ronda);
             // Cogemos el último punto de verdad
             int ultindex = Estado.Ronda.RondasPuntos.Count - 1;
             TRondaPunto urp = Estado.Ronda.RondasPuntos[ultindex];
@@ -196,17 +202,69 @@ namespace FalckCN50Lib
             {
                 // es el útimo punto
                 l.ObsAuto = "FINAL DE RONDA." + l.ObsAuto;
-                Estado.Ronda = null;
-                Estado.RondaPuntoEsperado = null;
-                Estado.Orden = 0;
+                if (pos >= 0)
+                {
+                    // hay puntos sin controlar i el siguiente viene en pos
+                    l.InAuto = "INCIDENCIA";
+                    l.ObsAuto = "Ha leido final de ronda, pero hay puntos sin controlar. Si pulsa <Continuar> la ronda se cerrará con esos puntos sin verificar. Si pulsa <Volver> la ronda seguirá activa y se le solicitará como punto siguiente el último no controlado";
+                    Estado.RondaPuntoEsperado = Estado.Ronda.RondasPuntos[pos];
+                    l.Status = 3;
+                }
+                else
+                {
+                    Estado.Ronda = null;
+                    Estado.RondaPuntoEsperado = null;
+                    Estado.Orden = 0;
+                }
             }
             else
             {
-                // no es el útimo
-                Estado.Orden = Estado.Orden + 1;
-                Estado.RondaPuntoEsperado = Estado.Ronda.RondasPuntos[Estado.Orden];
+                if (pos >= 0)
+                {
+                    if (l.Status == 0)
+                    {
+                        // no es el útimo (ponemos como siguiente el no controlado)
+                        Estado.Orden = pos;
+                        Estado.RondaPuntoEsperado = Estado.Ronda.RondasPuntos[pos];
+                    }
+                }
+                else
+                {
+                    // la ronda en realidad está completa
+                    l.ObsAuto = "FINAL DE RONDA. " + "Ha controlado todos los puntos de la ronda activa";
+                    Estado.Ronda = null;
+                    Estado.RondaPuntoEsperado = null;
+                    Estado.Orden = 0;
+                }
             }
             return l;
+        }
+
+        public static void MarcarControlado(TRonda r, TPunto p)
+        {
+            for (int i = 0; i < r.RondasPuntos.Count; i++)
+            {
+                TRondaPunto rp = r.RondasPuntos[i];
+                if (rp.Punto.puntoId == p.puntoId)
+                {
+                    // lo marcamos como controlado
+                    rp.Controlado = true;
+                }
+            }
+        }
+        public static int PuntosNoControlados(TRonda r)
+        {
+            int pos = -1;
+            for (int i = 0; i < r.RondasPuntos.Count; i++)
+            {
+                TRondaPunto rp = r.RondasPuntos[i];
+                if (!rp.Controlado)
+                {
+                    pos = i;
+                    break;
+                }
+            }
+            return pos;
         }
     }
 }

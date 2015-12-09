@@ -77,6 +77,13 @@ namespace FalckCN50
                     }
                 }
             }
+            if (status == 3)
+            {
+                // Ha leido un final de ronda con puntos sin controlar y quiere cerrar si o si.
+                Estado.Ronda = null;
+                Estado.RondaPuntoEsperado = null;
+                Estado.Orden = 0;
+            }
             LeerCodigo lc = new LeerCodigo();
             lc.Show();
             this.Close();
@@ -128,6 +135,11 @@ namespace FalckCN50
                 CntCN50.TOpen(conn);
                 CntCN50.SetDescargaLinea(dl, conn);
                 CntCN50.TClose(conn);
+                // controlamos que se ha leido un final de ronda pero quedaban puntos sin controlar
+                if (status == 3)
+                {
+                    // no hay que hacer nada, ya tiene como punto siguiente el último no controlado.
+                }
             }
             else
             {
@@ -139,6 +151,11 @@ namespace FalckCN50
             LeerCodigo lc = new LeerCodigo();
             lc.Show();
             this.Close();
+        }
+
+        private void LecturaForm_Closing(object sender, CancelEventArgs e)
+        {
+            
         }
 
     }

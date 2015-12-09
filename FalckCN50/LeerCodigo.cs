@@ -36,11 +36,18 @@ namespace FalckCN50
 
         private void mnuSalir_Click(object sender, EventArgs e)
         {
-            EntradaVigilante entradaVigilante = new EntradaVigilante();
-            // borramos primero el vigilante por que se ha salido
-            Estado.Vigilante = null;
-            entradaVigilante.Show();
-            this.Close();
+            if (Estado.Ronda != null)
+            {
+                DialogResult dr = MessageBox.Show("Tiene una ronda activa sin cerrar ¿Desea salir?. Si pulsa <OK> la ronda quedará con puntos sin controlar.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.OK)
+                {
+                    SalirAVigilante();
+                }
+            }
+            else
+            {
+                SalirAVigilante();
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -51,12 +58,19 @@ namespace FalckCN50
             this.Close();
         }
 
-
-
-        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        private void SalirAVigilante()
         {
-
+            EntradaVigilante entradaVigilante = new EntradaVigilante();
+            // borramos primero el vigilante por que se ha salido
+            Estado.Vigilante = null;
+            Estado.Ronda = null;
+            Estado.RondaPuntoEsperado = null;
+            Estado.Orden = 0;
+            entradaVigilante.Show();
+            this.Close();
         }
+
+
 
         private void txtCodigo_KeyDown(object sender, KeyEventArgs e)
         {
@@ -80,5 +94,9 @@ namespace FalckCN50
 
         }
 
+        private void label2_ParentChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
