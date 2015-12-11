@@ -68,46 +68,47 @@
             // 
             // lblLeido
             // 
-            this.lblLeido.Location = new System.Drawing.Point(7, 35);
+            this.lblLeido.Location = new System.Drawing.Point(7, 28);
             this.lblLeido.Name = "lblLeido";
             this.lblLeido.Size = new System.Drawing.Size(230, 26);
             this.lblLeido.Text = "Leido";
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(5, 121);
+            this.label1.Location = new System.Drawing.Point(5, 146);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(230, 18);
             this.label1.Text = "Incidencia manual:";
             // 
             // lblObsMan
             // 
-            this.lblObsMan.Location = new System.Drawing.Point(7, 167);
+            this.lblObsMan.Location = new System.Drawing.Point(7, 194);
             this.lblObsMan.Name = "lblObsMan";
             this.lblObsMan.Size = new System.Drawing.Size(230, 18);
             this.lblObsMan.Text = "Observaciones:";
             // 
             // txtObsMan
             // 
-            this.txtObsMan.Location = new System.Drawing.Point(7, 187);
+            this.txtObsMan.Location = new System.Drawing.Point(7, 213);
             this.txtObsMan.Multiline = true;
             this.txtObsMan.Name = "txtObsMan";
-            this.txtObsMan.Size = new System.Drawing.Size(227, 78);
+            this.txtObsMan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtObsMan.Size = new System.Drawing.Size(227, 52);
             this.txtObsMan.TabIndex = 9;
             // 
             // txtObsAuto
             // 
-            this.txtObsAuto.Location = new System.Drawing.Point(7, 55);
+            this.txtObsAuto.Location = new System.Drawing.Point(7, 46);
             this.txtObsAuto.Multiline = true;
             this.txtObsAuto.Name = "txtObsAuto";
             this.txtObsAuto.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObsAuto.Size = new System.Drawing.Size(227, 63);
+            this.txtObsAuto.Size = new System.Drawing.Size(227, 97);
             this.txtObsAuto.TabIndex = 15;
             this.txtObsAuto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtObsAuto_KeyDown);
             // 
             // cmbIncidencias
             // 
-            this.cmbIncidencias.Location = new System.Drawing.Point(7, 143);
+            this.cmbIncidencias.Location = new System.Drawing.Point(7, 168);
             this.cmbIncidencias.Name = "cmbIncidencias";
             this.cmbIncidencias.Size = new System.Drawing.Size(227, 22);
             this.cmbIncidencias.TabIndex = 20;

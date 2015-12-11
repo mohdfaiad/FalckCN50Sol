@@ -38,7 +38,10 @@ namespace FalckCN50
         {
             if (Estado.Ronda != null)
             {
-                DialogResult dr = MessageBox.Show("Tiene una ronda activa sin cerrar ¿Desea salir?. Si pulsa <OK> la ronda quedará con puntos sin controlar.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1);
+                PuntosSinControl psc = CntLecturas.PuntosNoControlados(Estado.Ronda);
+                // string mens = "Ronda sin completar, faltan los puntos de control " + psc.lista + ". Pulsa <Cancelar> para realizar las lecturas pendientes Pulsar <Aceptar> para forzar el cierre de la Ronda sin completar."; ;
+                string mens = "Ronda sin completar, faltan puntos de control. Pulsar <Cancelar> para realizar las lecturas pendientes Pulsar <Aceptar> para forzar el cierre de la Ronda sin completar."; ;
+                DialogResult dr = MessageBox.Show(mens, "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.OK)
                 {
                     SalirAVigilante();

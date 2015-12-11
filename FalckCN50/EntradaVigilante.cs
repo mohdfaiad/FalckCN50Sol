@@ -21,6 +21,7 @@ namespace FalckCN50
             string strVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Text = "VRS " + strVersion;
             Cursor.Current = Cursors.Default;
+            timer1.Enabled = true;
             // mostrar la fecha y hora en los sitios indicados
             lblFecha.Text = String.Format("{0:dd/MM/yyyy}", DateTime.Now);
             lblHora.Text = String.Format("{0:HH:mm:ss}", DateTime.Now);
@@ -40,9 +41,14 @@ namespace FalckCN50
             }
             // ponemos el vigilante logado
             Estado.Vigilante = v;
-            CntLecturas.LeidoVigilante(v, txtLogin.Text);
-            LeerCodigo leerCodigo = new LeerCodigo();
-            leerCodigo.Show();
+            Lectura l = CntLecturas.LeidoVigilante(v, txtLogin.Text);
+
+            LecturaForm lfrm = new LecturaForm(l);
+            lfrm.Show();
+            //this.Close();
+
+            //LeerCodigo leerCodigo = new LeerCodigo();
+            //leerCodigo.Show();
         }
 
         protected bool DatosOk()
@@ -58,6 +64,7 @@ namespace FalckCN50
 
         private void mnuSalir_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             this.Close();
         }
 
