@@ -129,7 +129,7 @@ namespace FalckCN50Lib
             l.DescargaLinea.nombre = p.nombre;
             l.DescargaLinea.fechaHora = DateTime.Now;
             // marcar el punto como controlado en la ronda activa
-            MarcarControlado(Estado.Ronda, p);
+            // MarcarControlado(Estado.Ronda, p);
             //---------
             // comprobar si hay una ronda activa
             if (Estado.Ronda == null)
@@ -137,6 +137,7 @@ namespace FalckCN50Lib
                 l.InAuto = "INCIDENCIA";
                 l.Leido = p.nombre;
                 l.ObsAuto = "No hay ninguna ronda activa. Realizar la lectura del Codigo de la ronda deseada.";
+                MarcarControlado(Estado.Ronda, p);
                 return l;
             }
             // comprobar si el punto está en secuencia
@@ -146,7 +147,7 @@ namespace FalckCN50Lib
                 l.InAuto = "CORRECTO";
                 l.Leido = p.nombre;
                 l.ObsAuto = "Punto control [" + p.nombre + "] leido en secuencia correcta.";
-
+                MarcarControlado(Estado.Ronda, p);
                 // Verificar si es el último punto de la ronda
                 return UltimoEnRonda(l, p);
             }
@@ -162,6 +163,7 @@ namespace FalckCN50Lib
                     if (rp.Controlado) repetido = true;
                 }
             }
+            MarcarControlado(Estado.Ronda, p);
             if (enRonda)
             {
                 l.InAuto = "INCIDENCIA";
