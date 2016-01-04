@@ -32,18 +32,19 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.mnuSalir = new System.Windows.Forms.MenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSP0 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.lblCodBarras = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblSP = new System.Windows.Forms.Label();
             this.lblRonda = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblVigilante = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblSP0 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblCSN = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +61,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.lblCSN);
             this.panel1.Controls.Add(this.lblSP0);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.btnAceptar);
@@ -68,6 +70,23 @@
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(234, 158);
+            // 
+            // lblSP0
+            // 
+            this.lblSP0.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblSP0.Location = new System.Drawing.Point(5, 114);
+            this.lblSP0.Name = "lblSP0";
+            this.lblSP0.Size = new System.Drawing.Size(226, 19);
+            this.lblSP0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(10, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(209, 17);
+            this.label6.Text = "SIGUIENTE PUNTO";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnAceptar
             // 
@@ -108,6 +127,15 @@
             this.panel2.Size = new System.Drawing.Size(234, 88);
             this.panel2.GotFocus += new System.EventHandler(this.panel2_GotFocus);
             // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(5, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(208, 17);
+            this.label2.Text = "INF. ADICIONAL PUNTO:";
+            this.label2.ParentChanged += new System.EventHandler(this.label2_ParentChanged);
+            // 
             // lblSP
             // 
             this.lblSP.Location = new System.Drawing.Point(7, 91);
@@ -142,30 +170,13 @@
             this.label1.Size = new System.Drawing.Size(206, 17);
             this.label1.Text = "VIGILANTE:";
             // 
-            // lblSP0
+            // lblCSN
             // 
-            this.lblSP0.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.lblSP0.Location = new System.Drawing.Point(5, 114);
-            this.lblSP0.Name = "lblSP0";
-            this.lblSP0.Size = new System.Drawing.Size(226, 44);
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(10, 97);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(209, 17);
-            this.label6.Text = "SIGUIENTE PUNTO";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(5, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(208, 17);
-            this.label2.Text = "INF. ADICIONAL PUNTO:";
-            this.label2.ParentChanged += new System.EventHandler(this.label2_ParentChanged);
+            this.lblCSN.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblCSN.Location = new System.Drawing.Point(5, 139);
+            this.lblCSN.Name = "lblCSN";
+            this.lblCSN.Size = new System.Drawing.Size(226, 19);
+            this.lblCSN.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LeerCodigo
             // 
@@ -201,5 +212,6 @@
         private System.Windows.Forms.Label lblSP0;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCSN;
     }
 }

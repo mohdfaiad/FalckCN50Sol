@@ -129,7 +129,7 @@ namespace FalckCN50Lib
             l.DescargaLinea.nombre = p.nombre;
             l.DescargaLinea.fechaHora = DateTime.Now;
             // marcar el punto como controlado en la ronda activa
-            // MarcarControlado(Estado.Ronda, p);
+            CntCN50.SetPointLastControl(p.puntoId,conn);
             //---------
             // comprobar si hay una ronda activa
             if (Estado.Ronda == null)

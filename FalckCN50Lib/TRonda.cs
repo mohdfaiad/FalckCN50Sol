@@ -36,6 +36,21 @@ namespace FalckCN50Lib
             set { _tagf = value; }
         }
 
+        private int _mintime;
+        public int mintime
+        {
+            get { return _mintime; }
+            set { _mintime = value; }
+        }
+
+        private int _maxtime;
+        public int maxtime
+        {
+            get { return _maxtime; }
+            set { _maxtime = value; }
+        }
+
+
         private IList<TRondaPunto> _rondasPuntos;
 
         public IList<TRondaPunto> RondasPuntos
@@ -78,6 +93,8 @@ namespace FalckCN50Lib
                 g.nombre = dr.GetString(12);
                 p.cota = dr.GetString(13);
                 p.cubiculo = dr.GetString(14);
+                r.mintime = dr.GetInt32(15);
+                r.maxtime = dr.GetInt32(16);
                 e.Grupo = g;
                 p.Edificio = e;
                 rp.Punto = p;
@@ -94,7 +111,7 @@ namespace FalckCN50Lib
                 var sql = @"SELECT r.rondaId, r.nombre, r.tag, r.tagf, 
                                 rp.rondaPuntoId, rp.orden, rp.puntoId, 
                                 p.nombre AS pnombre, p.edificioId, p.tag AS ptag, 
-                                e.nombre AS enombre, e.grupoId, g.nombre AS gnombre, p.cota, p.cubiculo
+                                e.nombre AS enombre, e.grupoId, g.nombre AS gnombre, p.cota, p.cubiculo, r.mintime, r.maxtime
                             FROM rondas AS r 
                                 LEFT OUTER JOIN rondaspuntos AS rp ON rp.rondaId = r.rondaId 
                                 LEFT OUTER JOIN puntos AS p ON p.puntoId = rp.puntoId

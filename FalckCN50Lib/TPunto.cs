@@ -56,6 +56,27 @@ namespace FalckCN50Lib
             get { return _observaciones; }
             set { _observaciones = value; }
         }
+
+        private int _csnmax;
+        public int csnmax
+        {
+            get { return _csnmax; }
+            set { _csnmax = value; }
+        }
+
+        private int _csnmargen;
+        public int csnmargen
+        {
+            get { return _csnmargen; }
+            set { _csnmargen = value; }
+        }
+
+        private DateTime _lastcontrol;
+        public DateTime lastcontrol
+        {
+            get { return _lastcontrol; }
+            set { _lastcontrol = value; }
+        }
     }
 
     public partial class CntCN50
@@ -75,6 +96,9 @@ namespace FalckCN50Lib
             e.nombre = dr.GetString(7);
             g.grupoId = dr.GetInt32(8);
             g.nombre = dr.GetString(9);
+            p.csnmax = dr.GetInt32(10);
+            p.csnmargen = dr.GetInt32(11);
+            p.lastcontrol = dr.GetDateTime(12);
             return p;
         }
         public static TPunto GetPuntoFromTag(string tag, SqlCeConnection conn)
@@ -83,7 +107,7 @@ namespace FalckCN50Lib
             using (SqlCeCommand cmd = conn.CreateCommand())
             {
                 string sql = @"SELECT p.puntoId, p.nombre, p.edificioId, p.tag, p.cota, p.cubiculo, p.observaciones, 
-                                    e.nombre AS enombre, e.grupoId, g.nombre AS gnombre
+                                    e.nombre AS enombre, e.grupoId, g.nombre AS gnombre, p.csnmax, p.csnmargen, p.lastcontrol
                                     FROM puntos AS p 
                                     LEFT OUTER JOIN edificios AS e ON e.edificioId = p.edificioId 
                                     LEFT OUTER JOIN grupos AS g ON g.grupoId = e.grupoId
@@ -109,7 +133,7 @@ namespace FalckCN50Lib
             using (SqlCeCommand cmd = conn.CreateCommand())
             {
                 string sql = @"SELECT p.puntoId, p.nombre, p.edificioId, p.tag, p.cota, p.cubiculo, p.observaciones, 
-                                    e.nombre AS enombre, e.grupoId, g.nombre AS gnombre
+                                    e.nombre AS enombre, e.grupoId, g.nombre AS gnombre, p.csnmax, p.csnmargen, p.lastcontrol
                                     FROM puntos AS p 
                                     LEFT OUTER JOIN edificios AS e ON e.edificioId = p.edificioId 
                                     LEFT OUTER JOIN grupos AS g ON g.grupoId = e.grupoId
@@ -128,6 +152,17 @@ namespace FalckCN50Lib
                 }
             }
             return p;
+        }
+
+        public static void SetPointLastControl(int pointId, SqlCeConnection conn)
+        {
+            using (SqlCeCommand cmd = conn.CreateCommand())
+            {
+                string sql = @"UPDATE puntos SET lastcontrol = '{0:yyyy-MM-dd hh:mm:ss}' WHERE puntoId = {1}";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = String.Format(sql, DateTime.Now, pointId);
+                int nrec = cmd.ExecuteNonQuery();
+            }
         }
 
     }
