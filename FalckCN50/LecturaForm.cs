@@ -140,6 +140,17 @@ namespace FalckCN50
                 {
                     // no hay que hacer nada, ya tiene como punto siguiente el último no controlado.
                 }
+                if (status == 1)
+                { 
+                    // punto fuera de secuencia pero en la ronda
+                    // hay que desmarcarlo como leido (Issue #SGUARD-63)
+                    if (dl.tipo == "PUNTO")
+                    {
+                        TPunto p = new TPunto();
+                        p.puntoId = dl.tipoId;
+                        CntLecturas.DesmarcarControlado(Estado.Ronda, p);
+                    }
+                }
             }
             else
             {

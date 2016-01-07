@@ -12,6 +12,10 @@ namespace FalckCN50
 {
     public partial class LeerCodigo : Form
     {
+        DateTime nullDate = new DateTime(1990, 1, 1, 0, 0, 0); // así vienen las fechas nulas;
+        DateTime lastTime = new DateTime(1990, 1, 1, 0, 0, 0);
+        int csnMax = 0;
+
         public LeerCodigo()
         {
             InitializeComponent();
@@ -24,14 +28,9 @@ namespace FalckCN50
             {
                 lblRonda.Text = Estado.Ronda.nombre;
             }
-            if (Estado.RondaPuntoEsperado != null)
-            {
-                TRondaPunto rp = Estado.RondaPuntoEsperado;
-                lblSP0.Text = rp.Punto.nombre;
-                string mens = "[Grupo: {1}] [Edificio:{0}] [Cota: {2}] [Cubiculo: {3}]";
-                mens = String.Format(mens, rp.Punto.Edificio.nombre, rp.Punto.Edificio.Grupo.nombre, rp.Punto.cota, rp.Punto.cubiculo);
-                lblSP.Text = mens;
-            }
+            controlPuntoEsperado();
+            // lanzamos el timer.
+            timer1.Enabled = true;
         }
 
         private void mnuSalir_Click(object sender, EventArgs e)
@@ -58,6 +57,7 @@ namespace FalckCN50
             Lectura l = CntLecturas.ComprobarTag(txtCodigo.Text);
             LecturaForm lfrm = new LecturaForm(l);
             lfrm.Show();
+            timer1.Enabled = false;
             this.Close();
         }
 
@@ -70,6 +70,7 @@ namespace FalckCN50
             Estado.RondaPuntoEsperado = null;
             Estado.Orden = 0;
             entradaVigilante.Show();
+            timer1.Enabled = false;
             this.Close();
         }
 
@@ -99,6 +100,57 @@ namespace FalckCN50
 
         private void label2_ParentChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            controlPuntoEsperado();
+        }
+
+        private void controlPuntoEsperado()
+        {
+            if (Estado.RondaPuntoEsperado != null)
+            {
+                TRondaPunto rp = Estado.RondaPuntoEsperado;
+                lblSP0.Text = rp.Punto.nombre;
+                string mens = "[Grupo: {1}] [Edificio:{0}] [Cota: {2}] [Cubiculo: {3}]";
+                mens = String.Format(mens, rp.Punto.Edificio.nombre, rp.Punto.Edificio.Grupo.nombre, rp.Punto.cota, rp.Punto.cubiculo);
+                lblSP.Text = mens;
+                csnMax = rp.Punto.csnmax;
+                // controlar si debe de activarse el reloj CSN
+                if (csnMax > 0)
+                {
+                    // tiene control csn, ahora hay que ver la última vez
+                    // que se controló este punto.
+                    nullDate = new DateTime(1990, 1, 1, 0, 0, 0); // así vienen las fechas nulas
+                    lastTime = rp.Punto.lastcontrol;
+                    // solo controlamos cuando ha habido una lectura previa
+                    if (lastTime != nullDate)
+                    {
+                        // calculo del tiempo transcurrido
+                        int minutesPassed = (int)Math.Round(DateTime.Now.Subtract(lastTime).TotalMinutes);
+                        // minutos restantes
+                        int minutesLeft = rp.Punto.csnmax - minutesPassed;
+                        if (minutesLeft <= 0)
+                        {
+                            lblCSN.BackColor = System.Drawing.Color.Red;
+                            lblCSN.ForeColor = System.Drawing.Color.White;
+                            lblCSN.Text = String.Format("Ultimo control {0:dd/MM/yyyy HH:mm}, superados los {1} minutos máximos", lastTime, csnMax);
+                        }
+                        else
+                        {
+                            lblCSN.BackColor = System.Drawing.Color.Orange;
+                            lblCSN.Text = String.Format("Ultimo control {0:dd/MM/yyyy HH:mm}, quedan {1} minutos para el siguiente control", lastTime, minutesLeft);
+                        }
+
+                    }
+                }
+                else
+                {
+                    lblCSN.Text = "SIN CONTROL CSN";
+                }
+            }
 
         }
     }

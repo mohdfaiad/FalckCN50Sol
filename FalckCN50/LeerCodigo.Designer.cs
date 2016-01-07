@@ -32,6 +32,7 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.mnuSalir = new System.Windows.Forms.MenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCSN = new System.Windows.Forms.Label();
             this.lblSP0 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -44,7 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblVigilante = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblCSN = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -69,14 +70,23 @@
             this.panel1.Controls.Add(this.lblCodBarras);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(234, 158);
+            this.panel1.Size = new System.Drawing.Size(234, 181);
+            // 
+            // lblCSN
+            // 
+            this.lblCSN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.lblCSN.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblCSN.Location = new System.Drawing.Point(0, 139);
+            this.lblCSN.Name = "lblCSN";
+            this.lblCSN.Size = new System.Drawing.Size(234, 42);
+            this.lblCSN.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblSP0
             // 
             this.lblSP0.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.lblSP0.Location = new System.Drawing.Point(5, 114);
             this.lblSP0.Name = "lblSP0";
-            this.lblSP0.Size = new System.Drawing.Size(226, 19);
+            this.lblSP0.Size = new System.Drawing.Size(226, 15);
             this.lblSP0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label6
@@ -122,15 +132,15 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.lblVigilante);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(3, 167);
+            this.panel2.Location = new System.Drawing.Point(3, 182);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(234, 88);
+            this.panel2.Size = new System.Drawing.Size(234, 73);
             this.panel2.GotFocus += new System.EventHandler(this.panel2_GotFocus);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(5, 74);
+            this.label2.Location = new System.Drawing.Point(5, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(208, 17);
             this.label2.Text = "INF. ADICIONAL PUNTO:";
@@ -138,45 +148,41 @@
             // 
             // lblSP
             // 
-            this.lblSP.Location = new System.Drawing.Point(7, 91);
+            this.lblSP.Location = new System.Drawing.Point(7, 120);
             this.lblSP.Name = "lblSP";
-            this.lblSP.Size = new System.Drawing.Size(205, 101);
+            this.lblSP.Size = new System.Drawing.Size(205, 79);
             // 
             // lblRonda
             // 
-            this.lblRonda.Location = new System.Drawing.Point(6, 55);
+            this.lblRonda.Location = new System.Drawing.Point(6, 70);
             this.lblRonda.Name = "lblRonda";
             this.lblRonda.Size = new System.Drawing.Size(212, 19);
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(6, 38);
+            this.label4.Location = new System.Drawing.Point(6, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 17);
             this.label4.Text = "RONDA:";
             // 
             // lblVigilante
             // 
-            this.lblVigilante.Location = new System.Drawing.Point(5, 17);
+            this.lblVigilante.Location = new System.Drawing.Point(5, 27);
             this.lblVigilante.Name = "lblVigilante";
             this.lblVigilante.Size = new System.Drawing.Size(213, 21);
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(6, 0);
+            this.label1.Location = new System.Drawing.Point(6, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 17);
             this.label1.Text = "VIGILANTE:";
             // 
-            // lblCSN
+            // timer1
             // 
-            this.lblCSN.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.lblCSN.Location = new System.Drawing.Point(5, 139);
-            this.lblCSN.Name = "lblCSN";
-            this.lblCSN.Size = new System.Drawing.Size(226, 19);
-            this.lblCSN.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // LeerCodigo
             // 
@@ -213,5 +219,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCSN;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -95,6 +95,9 @@ namespace FalckCN50Lib
                 p.cubiculo = dr.GetString(14);
                 r.mintime = dr.GetInt32(15);
                 r.maxtime = dr.GetInt32(16);
+                p.csnmax = dr.GetInt32(17);
+                p.csnmargen = dr.GetInt32(18);
+                p.lastcontrol = dr.GetDateTime(19);
                 e.Grupo = g;
                 p.Edificio = e;
                 rp.Punto = p;
@@ -111,7 +114,7 @@ namespace FalckCN50Lib
                 var sql = @"SELECT r.rondaId, r.nombre, r.tag, r.tagf, 
                                 rp.rondaPuntoId, rp.orden, rp.puntoId, 
                                 p.nombre AS pnombre, p.edificioId, p.tag AS ptag, 
-                                e.nombre AS enombre, e.grupoId, g.nombre AS gnombre, p.cota, p.cubiculo, r.mintime, r.maxtime
+                                e.nombre AS enombre, e.grupoId, g.nombre AS gnombre, p.cota, p.cubiculo, r.mintime, r.maxtime, p.csnmax, p.csnmargen, p.lastcontrol
                             FROM rondas AS r 
                                 LEFT OUTER JOIN rondaspuntos AS rp ON rp.rondaId = r.rondaId 
                                 LEFT OUTER JOIN puntos AS p ON p.puntoId = rp.puntoId

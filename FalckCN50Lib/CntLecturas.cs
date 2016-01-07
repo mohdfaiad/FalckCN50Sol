@@ -170,13 +170,14 @@ namespace FalckCN50Lib
                 l.Leido = p.nombre;
                 if (repetido)
                 {
-                    l.ObsAuto = "Punto repetido, ya ha leido este punto en la ronda. Pulsa <Volver> para realizar la lectura del Punto Control esperado [" + rp.Punto.nombre + "]. Pulsar <Continuar> para seguir con la ronda desde el Punto Control leido.";
+                    l.ObsAuto = "Punto repetido, ya ha leido este punto en la ronda. Pulsa <Volver> para realizar la lectura del Punto Control esperado [" + Estado.RondaPuntoEsperado.Punto.nombre + "]. Pulsar <Continuar> para seguir con la ronda desde el Punto Control leido.";
+                    l.Status = 4; // punto repetido
                 }
                 else
                 {
-                    l.ObsAuto = "Punto control leido pertenece a la ronda pero no se ha leido en el orden esperado. Pulsa <Volver> para realizar la lectura del Punto Control esperado [" + rp.Punto.nombre + "]. Pulsar <Continuar> para seguir con la ronda desde el Punto Control leido.";
+                    l.ObsAuto = "Punto control leido pertenece a la ronda pero no se ha leido en el orden esperado. Pulsa <Volver> para realizar la lectura del Punto Control esperado [" + Estado.RondaPuntoEsperado.Punto.nombre + "]. Pulsar <Continuar> para seguir con la ronda desde el Punto Control leido.";
+                    l.Status = 1; // punto no en orden.
                 }
-                l.Status = 1; // punto no en orden.
                 // puede que sea el último
                 l = UltimoEnRonda(l, p);
             }
@@ -294,6 +295,22 @@ namespace FalckCN50Lib
                 }
             }
         }
+
+        public static void DesmarcarControlado(TRonda r, TPunto p)
+        {
+            if (r == null) return;
+            for (int i = 0; i < r.RondasPuntos.Count; i++)
+            {
+                TRondaPunto rp = r.RondasPuntos[i];
+                if (rp.Punto.puntoId == p.puntoId)
+                {
+                    // lo desmarcamos como controlado
+                    rp.Controlado = false;
+                }
+            }
+        }
+
+
         public static PuntosSinControl PuntosNoControlados(TRonda r)
         {
             PuntosSinControl psc = new PuntosSinControl();
