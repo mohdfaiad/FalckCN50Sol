@@ -209,6 +209,34 @@ namespace FalckCN50Lib
             l.ObsAuto = "El codigo leido no figura en la base de datos.";
             return l;
         }
+
+        public static Lectura Observacion()
+        {
+            if (Estado.RondaPuntoEsperado == null)
+            {
+                return null;
+            }
+            SqlCeConnection conn = CntCN50.TSqlConnection();
+            CntCN50.TOpen(conn);
+            Lectura l = new Lectura();
+            l.Status = 0;
+            l.DescargaLinea = new TDescargaLinea();
+            l.DescargaLinea.descargaLineaId = CntCN50.GetSiguienteDescargaLineaId(conn);
+            l.DescargaLinea.tag = "OBSERVACION";
+            l.DescargaLinea.tipo = "OBSERVACION";
+            TRondaPunto rp = Estado.RondaPuntoEsperado;
+            l.DescargaLinea.tipoId = 0;
+            l.DescargaLinea.nombre = rp.Punto.nombre;
+            l.DescargaLinea.fechaHora = DateTime.Now;
+            CntCN50.TClose(conn);
+            //---------
+            l.InAuto = "OBSERVACION";
+            l.Leido = rp.Punto.nombre;
+            l.ObsAuto = "Introduzca incidencia y/o comentario";
+            return l;
+        }
+
+
         public static Lectura FinRondaManual(string tag)
         {
             Lectura l = new Lectura();

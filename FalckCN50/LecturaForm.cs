@@ -32,7 +32,7 @@ namespace FalckCN50
                 mnuCancelar.Enabled = false;
             }
             //
-            if (l.InAuto == "CORRECTO")
+            if (l.InAuto == "CORRECTO" || l.InAuto == "COMENTARIO")
             {
                 lblInAuto.BackColor = System.Drawing.Color.Green;
                 this.BackColor = System.Drawing.Color.LightGreen;

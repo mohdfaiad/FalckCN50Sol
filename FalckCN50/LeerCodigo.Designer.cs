@@ -46,6 +46,7 @@
             this.lblVigilante = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer();
+            this.mnuObservaciones = new System.Windows.Forms.MenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +54,7 @@
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.Add(this.mnuSalir);
+            this.mainMenu1.MenuItems.Add(this.mnuObservaciones);
             // 
             // mnuSalir
             // 
@@ -70,15 +72,15 @@
             this.panel1.Controls.Add(this.lblCodBarras);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(234, 181);
+            this.panel1.Size = new System.Drawing.Size(234, 159);
             // 
             // lblCSN
             // 
             this.lblCSN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.lblCSN.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.lblCSN.Location = new System.Drawing.Point(0, 139);
+            this.lblCSN.Location = new System.Drawing.Point(0, 133);
             this.lblCSN.Name = "lblCSN";
-            this.lblCSN.Size = new System.Drawing.Size(234, 42);
+            this.lblCSN.Size = new System.Drawing.Size(234, 26);
             this.lblCSN.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblSP0
@@ -132,15 +134,15 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.lblVigilante);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(3, 182);
+            this.panel2.Location = new System.Drawing.Point(3, 162);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(234, 73);
+            this.panel2.Size = new System.Drawing.Size(234, 105);
             this.panel2.GotFocus += new System.EventHandler(this.panel2_GotFocus);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(5, 95);
+            this.label2.Location = new System.Drawing.Point(5, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(208, 17);
             this.label2.Text = "INF. ADICIONAL PUNTO:";
@@ -148,29 +150,31 @@
             // 
             // lblSP
             // 
-            this.lblSP.Location = new System.Drawing.Point(7, 120);
+            this.lblSP.Location = new System.Drawing.Point(10, 60);
             this.lblSP.Name = "lblSP";
-            this.lblSP.Size = new System.Drawing.Size(205, 79);
+            this.lblSP.Size = new System.Drawing.Size(205, 93);
             // 
             // lblRonda
             // 
-            this.lblRonda.Location = new System.Drawing.Point(6, 70);
+            this.lblRonda.Location = new System.Drawing.Point(59, 25);
             this.lblRonda.Name = "lblRonda";
-            this.lblRonda.Size = new System.Drawing.Size(212, 19);
+            this.lblRonda.Size = new System.Drawing.Size(160, 19);
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(6, 49);
+            this.label4.Location = new System.Drawing.Point(6, 26);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 17);
+            this.label4.Size = new System.Drawing.Size(65, 17);
             this.label4.Text = "RONDA:";
+            this.label4.ParentChanged += new System.EventHandler(this.label4_ParentChanged);
             // 
             // lblVigilante
             // 
-            this.lblVigilante.Location = new System.Drawing.Point(5, 27);
+            this.lblVigilante.Location = new System.Drawing.Point(77, 9);
             this.lblVigilante.Name = "lblVigilante";
-            this.lblVigilante.Size = new System.Drawing.Size(213, 21);
+            this.lblVigilante.Size = new System.Drawing.Size(141, 17);
+            this.lblVigilante.Text = "123456789012345678901234567890";
             // 
             // label1
             // 
@@ -183,6 +187,11 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // mnuObservaciones
+            // 
+            this.mnuObservaciones.Text = "OBSERVACIONES";
+            this.mnuObservaciones.Click += new System.EventHandler(this.mnuObservaciones_Click);
             // 
             // LeerCodigo
             // 
@@ -220,5 +229,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCSN;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.MenuItem mnuObservaciones;
     }
 }

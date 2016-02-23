@@ -158,7 +158,7 @@ namespace FalckCN50Lib
         {
             using (SqlCeCommand cmd = conn.CreateCommand())
             {
-                string sql = @"UPDATE puntos SET lastcontrol = '{0:yyyy-MM-dd hh:mm:ss}' WHERE puntoId = {1}";
+                string sql = @"UPDATE puntos SET lastcontrol = '{0:yyyy-MM-dd HH:mm:ss}' WHERE puntoId = {1}";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = String.Format(sql, DateTime.Now, pointId);
                 int nrec = cmd.ExecuteNonQuery();

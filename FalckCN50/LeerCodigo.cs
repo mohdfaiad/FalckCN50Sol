@@ -136,12 +136,12 @@ namespace FalckCN50
                         {
                             lblCSN.BackColor = System.Drawing.Color.Red;
                             lblCSN.ForeColor = System.Drawing.Color.White;
-                            lblCSN.Text = String.Format("Ultimo control {0:dd/MM/yyyy HH:mm}, superados los {1} minutos máximos", lastTime, csnMax);
+                            lblCSN.Text = String.Format("Superados los {1} min. máximos", lastTime, csnMax);
                         }
                         else
                         {
                             lblCSN.BackColor = System.Drawing.Color.Orange;
-                            lblCSN.Text = String.Format("Ultimo control {0:dd/MM/yyyy HH:mm}, quedan {1} minutos para el siguiente control", lastTime, minutesLeft);
+                            lblCSN.Text = String.Format("Quedan {1} min. para el siguiente control", lastTime, minutesLeft);
                         }
 
                     }
@@ -152,6 +152,25 @@ namespace FalckCN50
                 }
             }
 
+        }
+
+        private void label4_ParentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuObservaciones_Click(object sender, EventArgs e)
+        {
+            Lectura l = CntLecturas.Observacion();
+            if (l == null)
+            {
+                DialogResult dr = MessageBox.Show("Las observaciones se hacen dentro de las rondas","AVISO");
+                return;
+            }
+            LecturaForm lfrm = new LecturaForm(l);
+            lfrm.Show();
+            timer1.Enabled = false;
+            this.Close();
         }
     }
 }
